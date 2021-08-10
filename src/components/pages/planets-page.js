@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Row from '../row'
 import {PlanetDetails, PlanetList} from '../sw-components';
-import ErrorBoundary from "../error-boundary";
+
 
 
 const PlanetsPage = () => {

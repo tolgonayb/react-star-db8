@@ -1,15 +1,20 @@
-import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import React, {useState} from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import {PeoplePage, PlanetsPage} from '../pages';
-import {Provider, Consumer} from '../swapi-context/swapi-context';
+import {PeoplePage, PlanetsPage, StarshipsPage, SecretPage, LoginPage} from '../pages';
+import StarshipDetails from "../sw-components/starship-details";
+
+import {Provider} from '../swapi-context/swapi-context';
 import SwapiService from "../../services/swapi-service";
 
 import './app.css';
 
 const App = () => {
+	const [isAuth, setIsAuth] = useState(false)
+
+
 	return (
 		<div>
 			<Provider value={SwapiService}>
@@ -17,10 +22,36 @@ const App = () => {
 				<Router>
 					<Header/>
 					<RandomPlanet />
+					<Switch>
+					<Route path='/' exact={true} render={() => <h1>Main Page</h1> } />
 
-					<Route path='/people' component={PeoplePage} />
+					<Route path='/people/:id?' render={({match}) => {
+						const {id: selectedId} = match.params;
+						return <PeoplePage selectedId={selectedId} />
+					}} />
+
+
 					<Route path='/planets' component={PlanetsPage} />
 
+
+					<Route path='/starships' exact={true} component={StarshipsPage} />
+					<Route path='/starships/:id' render={({match}) => {
+						const {id: itemId} = match.params;
+						return <StarshipDetails itemId={itemId} />
+					}} />
+
+
+					<Route path='/secret' render={() => {
+						return <SecretPage isAuth={isAuth} />
+					}} />
+
+
+					<Route path='/login' render={() => {
+						return <LoginPage setIsAuth={() => {setIsAuth(true)}} />
+						}} />
+
+						<Redirect to='/' />
+ 					</Switch>
 				</Router>
 
 			</Provider>

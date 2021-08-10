@@ -2,11 +2,11 @@ import React from 'react';
 import {ItemDetails, Record} from "../item-details";
 import withSwapiService from "../hoc/with-swapi-service";
 
-const StarshipDetails = ({getStarship, getStarshipImage}) => {
+const StarshipDetails = ({getStarship, getStarshipImage, itemId}) => {
 	return (
 		<ItemDetails
 			getData={getStarship}
-			itemId={10}
+			itemId={itemId}
 			getImageUrl={getStarshipImage}
 		>
 			<Record field='manufacturer' label='manufacturer'/>

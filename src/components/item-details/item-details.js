@@ -44,7 +44,7 @@ class ItemDetails extends Component {
 		return (
 			<React.Fragment>
 				<div className="person-details card">
-					<img className="person-image" src={this.state.imageUrl}/>
+					<img className="person-image" src={this.state.imageUrl} alt=''/>
 
 					<div className="card-body">
 						<h4>{this.state.data.name}</h4>
