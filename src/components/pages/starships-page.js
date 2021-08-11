@@ -1,17 +1,18 @@
 import React from 'react'
 import {withRouter} from "react-router-dom";
-import {StarshipList} from '../sw-components';
+import {StarshipDetails, StarshipList} from '../sw-components';
+import Row from "../row";
 
 
 
-const StarshipsPage = ({history}) => {
-
-    const localRedirect = (id) => {
-        history.push(id)
-    }
+const StarshipsPage = (props) => {
+    const selectedId = props.match.params.id || 2
 
     return (
-        <StarshipList selectedId={(id) => {localRedirect(id)}} />
+        <Row
+            left={<StarshipList path='starships' />}
+            right={<StarshipDetails itemId={selectedId}/>}
+        />
     )
 }
 

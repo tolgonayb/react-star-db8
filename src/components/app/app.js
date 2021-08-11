@@ -31,14 +31,11 @@ const App = () => {
 					}} />
 
 
-					<Route path='/planets' component={PlanetsPage} />
+						<Route path='/planets' exact={true} component={PlanetsPage} />
+						<Route path='/planets/:id' exact={true} component={PlanetsPage} />
 
-
-					<Route path='/starships' exact={true} component={StarshipsPage} />
-					<Route path='/starships/:id' render={({match}) => {
-						const {id: itemId} = match.params;
-						return <StarshipDetails itemId={itemId} />
-					}} />
+						<Route path='/starships' exact={true} component={StarshipsPage} />
+						<Route path='/starships/:id' exact={true} component={StarshipsPage} />
 
 
 					<Route path='/secret' render={() => {

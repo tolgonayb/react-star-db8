@@ -4,12 +4,12 @@ import {PlanetDetails, PlanetList} from '../sw-components';
 
 
 
-const PlanetsPage = () => {
-	const [selectedId, setSelectedId] = useState(1);
+const PlanetsPage = (props) => {
+	const selectedId = props.match.params.id || 1
 
 	return (
 		<Row
-			left={<PlanetList selectId={(id) => {setSelectedId(id)}} />}
+			left={<PlanetList path="planets"/>}
 			right={<PlanetDetails itemId={selectedId} />}
 		/>
 	)

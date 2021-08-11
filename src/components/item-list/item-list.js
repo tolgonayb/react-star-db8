@@ -1,17 +1,17 @@
 import React from 'react';
 import './item-list.css';
+import {NavLink} from "react-router-dom";
 
 const ItemList = (props) => {
+
 	const renderElements = (arr) => {
 		const people = arr.map((item) => {
 			return (
-				<li
-					onClick={() => {
-						props.selectId(item.id)
-					}}
+				<NavLink
+					to={`/${props.path}/${item.id}/`}
 					key={item.id} className='list-group-item'>
 					{props.children(item)}
-				</li>
+				</NavLink>
 			)
 		})
 		return people
